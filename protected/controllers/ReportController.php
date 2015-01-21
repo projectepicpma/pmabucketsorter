@@ -1,5 +1,5 @@
 <?php
-
+// testing for committing
 class ReportController extends Controller
 {
 	/**
@@ -211,6 +211,7 @@ class ReportController extends Controller
 	
 	function actionGenerateReport()
 	{
+		echo "testing for committing to github";
 		$model=new Report;
 		
 		// Uncomment the following line if AJAX validation is needed
