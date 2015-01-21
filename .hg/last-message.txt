@@ -1,0 +1,1 @@
+Fix problem where selecting an event doesn't take the user to the right event

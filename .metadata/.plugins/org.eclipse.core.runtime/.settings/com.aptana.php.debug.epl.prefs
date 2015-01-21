@@ -1,0 +1,8 @@
+com.aptana.php.debug.eplinstalledPHPDebuggers=org2.eclipse.php.debug.core.xdebugDebugger
+com.aptana.php.debug.eplinstalledPHPDefaults=org2.eclipse.php.debug.core.xdebugDebugger\=PHP
+com.aptana.php.debug.eplinstalledPHPInis=C\:\\xampp\\php\\php.ini
+com.aptana.php.debug.eplinstalledPHPLocations=C\:\\xampp\\php\\php.exe
+com.aptana.php.debug.eplinstalledPHPNames=PHP
+com.aptana.php.debug.php_debugger_id=org2.eclipse.php.debug.core.xdebugDebugger
+eclipse.preferences.version=1
+extensions=

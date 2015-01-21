@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.aptana.php.debug.core.launching.webPageLaunch">
+<booleanAttribute key="ATTR_AUTO_GENERATED_URL" value="false"/>
+<listAttribute key="ATTR_HTTP_GET"/>
+<listAttribute key="ATTR_HTTP_POST"/>
+<stringAttribute key="ATTR_SERVER_BASE_URL" value="http://localhost/bucketsorter/protected/controllers/SiteController.php"/>
+<stringAttribute key="ATTR_SERVER_FILE_NAME" value="/bucketsorter/protected/controllers/SiteController.php"/>
+<stringAttribute key="ATTR_SERVER_NAME" value="localhost"/>
+<booleanAttribute key="ATTR_USE_SPECIFIC_FILE" value="true"/>
+<stringAttribute key="com.aptana.php.debug.configurationDelegateClass" value="org2.eclipse.php.internal.debug.core.launching.XDebugWebLaunchConfigurationDelegate"/>
+<stringAttribute key="com.aptana.php.debug.php_debugger_id" value="org2.eclipse.php.debug.core.xdebugDebugger"/>
+<stringAttribute key="debugOutputEncoding" value="UTF-8"/>
+<stringAttribute key="debugPages" value="debugAllPages"/>
+<stringAttribute key="debugTransferEncoding" value="UTF-8"/>
+<booleanAttribute key="firstLineBreakpoint" value="true"/>
+<booleanAttribute key="org2.eclipse.php.debug.core.OpenInBrowser" value="true"/>
+<stringAttribute key="org2.eclipse.php.debug.core.PHP_Project" value="/bucketsorter"/>
+<booleanAttribute key="org2.eclipse.php.debug.core.RunWithDebugInfo" value="true"/>
+<stringAttribute key="org2.eclipse.php.debug.core.SSHTunnelPassword" value=""/>
+<stringAttribute key="org2.eclipse.php.debug.core.SSHTunnelUserName" value=""/>
+<booleanAttribute key="org2.eclipse.php.debug.core.UseExternalBrowser" value="false"/>
+<booleanAttribute key="org2.eclipse.php.debug.core.UseSSHTunnel" value="false"/>
+</launchConfiguration>
