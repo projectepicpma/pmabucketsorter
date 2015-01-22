@@ -11,7 +11,6 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
 <html>
 <head>
 
