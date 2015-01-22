@@ -15,6 +15,9 @@ class Report extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Report the static model class
 	 */
+	 public $fromdate;
+	 public $todate;
+	 
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -39,6 +42,8 @@ class Report extends CActiveRecord
 			array('name', 'required'),
 			array('showtwittertopten, showtwitterdailybreakdown, option1, option2, option3', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>45),
+			array('fromdate, todate', 'date', 'format'=>'yyyy-M-d', 'message'=>'The format of {attribute} is invalid. The expected format is yyyy-M-d'),
+			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('name, showtwittertopten, showtwitterdailybreakdown', 'safe', 'on'=>'search'),
@@ -69,6 +74,9 @@ class Report extends CActiveRecord
 			'option1' => 'Twitter Category Report',
 			'option2' => 'Top Twenty Hashtags',
 			'option3' => 'Top Twenty Retweets',
+			'fromdate' => 'Date From',
+			'todate' => 'Date To',
+			
 		);
 	}
 

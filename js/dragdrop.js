@@ -12,7 +12,7 @@ var Droppables = {
   drops: [],
 
   remove: function(element) {
-    this.drops = this.drops.reject(function(d) { return d.element==$$$(element) });
+    this.drops = this.drops.reject(function(d) { return d.element==$$$(element) ;});
   },
 
   add: function(element) {
@@ -28,7 +28,7 @@ var Droppables = {
       options._containers = [];
       var containment = options.containment;
       if(Object.isArray(containment)) {
-        containment.each( function(c) { options._containers.push($$$(c)) });
+        containment.each( function(c) { options._containers.push($$$(c)) ;});
       } else {
         options._containers.push($$$(containment));
       }
@@ -59,7 +59,7 @@ var Droppables = {
     } else {
       containmentNode = element.parentNode;
     }
-    return drop._containers.detect(function(c) { return containmentNode == c });
+    return drop._containers.detect(function(c) { return containmentNode == c ;});
   },
 
   isAffected: function(point, element, drop) {
@@ -69,7 +69,7 @@ var Droppables = {
         this.isContained(element, drop)) &&
       ((!drop.accept) ||
         (Element.classNames(element).detect(
-          function(v) { return drop.accept.include(v) } ) )) &&
+          function(v) { return drop.accept.include(v) ;} ) )) &&
       Position.within(drop.element, point[0], point[1]) );
   },
 
