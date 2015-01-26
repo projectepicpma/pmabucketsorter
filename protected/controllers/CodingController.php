@@ -34,13 +34,32 @@ class CodingController extends Controller
 		
 		$user=User::model()->find('LOWER(username)=?',array(Yii::app()->user->name));
 		$event= Event::model()->find('id=?', array($user->selectedevent));
-		
+		$eventid = $user->selectedevent;
 		//Do not assign a code to the root categories
 		if ($code!=$event->rootcategoryid)
 		{
 			$this->createCode($tweetid, $code);
 		}
-		
+		$link = mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9","twitterbucketsort")or die("cant connect to database ".mysqli_error($link));
+        $checksql = "select tweetcount FROM categorycount 
+			         WHERE eventid=".$eventid." AND categoryid=".$code;
+		$checkresult = mysqli_query($link, $checksql) or die("cant query database at line 47 ".mysqli_error($link));
+		if(mysqli_num_rows($checkresult) == 1)
+		{
+		  $count = mysqli_fetch_array($checkresult);
+		  $newcount = $count['tweetcount'] + 1;
+          
+		  $updatequery = "UPDATE categorycount SET tweetcount=".$newcount." 
+		                  WHERE eventid=".$eventid." AND categoryid=".$code;
+		  $updateresult = mysqli_query($link, $updatequery) or die("cannot update result at line 55 ".mysqli_error($link));
+		}
+		elseif (mysqli_num_rows($checkresult) == 0) 
+		{
+			$insertquery = "INSERT INTO categorycount(categoryid, eventid,tweetcount) 
+			                VALUES('$code','$eventid',1)";
+			$insertresult = mysqli_query($link, $insertquery) or die("not inserted in categorycount at line 61 ".mysqli_error($link));
+		}
+			
 		$codes="";
 		
 		// Select the categories displayed to the user
