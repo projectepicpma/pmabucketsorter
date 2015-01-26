@@ -350,6 +350,8 @@ class ReportController extends Controller
 				$categoryTweetCount = Tweets::model()->countBySql($sql, $params);
 				array_push($categoryCounts, array($category->name,$categoryTweetCount));
 			}
+			//print_r($categoryCounts);
+			
 			$categoryCounts[0][1]=$eventTwitterNum;
 			global $elapsedtime111;
 			$elapsedtime111 = microtime(TRUE)-$start111;
@@ -359,6 +361,15 @@ class ReportController extends Controller
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
 			
+			
+			//=======new approach========
+			$newsql = "SELECT category.name, categorycount.tweetcount FROM categorycount 
+			           INNER JOIN category ON categorycount.categoryid = category.id
+			           WHERE eventid=".$user->selectedevent;
+			$command = $connection->createCommand($newsql);
+			$categoryCounts = $command->queryAll();
+			//echo "cat counts ".print_r($categoryCounts)." query ".$newsql;
+			//die();
 		}
 		
 		// If user selected to show the Top Twenty Hashtags perform the query that gets the needed data.
@@ -571,7 +582,11 @@ class ReportController extends Controller
 			$valuesTable = array( array("Category", "Number of Tweets"));
 			foreach($categoryCounts as $tweetCount)
 			{
-				array_push($valuesTable, array($tweetCount[0],$tweetCount[1]));
+				// for old approach
+				//array_push($valuesTable, array($tweetCount[0],$tweetCount[1]));
+				
+				// for new approach
+				array_push($valuesTable, array($tweetCount['name'],$tweetCount['tweetcount']));
 			}
 				
 			$paramsTable = array(
@@ -586,7 +601,11 @@ class ReportController extends Controller
 			);
 			foreach($categoryCounts as $tweetCount)
 			{
-				$legends[$tweetCount[0]]=array($tweetCount[1]);
+				// for old approach
+				//$legends[$tweetCount[0]]=array($tweetCount[1]);
+				
+				// for new approach
+				$legends[$tweetCount['name']]=array($tweetCount['tweetcount']);
 			}
 			$args = array(
 							    'data' => $legends,
