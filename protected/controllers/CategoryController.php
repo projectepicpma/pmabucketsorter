@@ -209,9 +209,21 @@ class CategoryController extends Controller
 
 		if(isset($_POST['Category']))
 		{
-
+			// inserting in cateforycount not working.
+			$link = mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9","twitterbucketsort");
+        
 			$new_root=new Category;
 			$new_root->attributes=$_POST['Category'];
+			
+			$geteventid = "SELECT id FROM event where rootcategoryid=".$new_root->root." LIMIT 1";
+			$execute = mysqli_query($link, $geteventid) or die("error at line 218 ".mysqli_error($link));
+			$eventidarray = mysqli_fetch_array($execute);
+			$eventid = $eventidarray['id'];
+			$insertincatcount="INSERT INTO categorycount(categoryid,eventid,count) 
+		                   VALUES('$catid','$eventid','0')";
+			mysqli_close($link);
+		
+			
 			if($new_root->saveNode(false, $_POST['Category'])){
 				echo json_encode(array('success'=>true,
                                        'id'=>$new_root->primaryKey)
@@ -232,19 +244,35 @@ class CategoryController extends Controller
 
 
 	public function actionCreate(){
-
+				
+		$link = mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9","twitterbucketsort");
+        
 		$model=new Category;
 		//set the submitted values
 		$model->name=$_POST['name'];
 		$parent=$this->loadModel($_POST['parent_id']);
+		
 		//return the JSON result to provide feedback.
 		if($model->appendTo($parent)){
 			echo json_encode(array('success'=>true,
            		'id'=>$model->primaryKey)
 				);
+				$catid = $model->primaryKey;
+				// inserting the newly created category in 'categorycount' table for reporting
+		$geteventid = "SELECT id FROM event where rootcategoryid=
+		              (SELECT root FROM category WHERE id=".$_POST['parent_id']." LIMIT 1)";
+		$execute = mysqli_query($link, $geteventid) or die("error at line 254 ".mysqli_error($link));
+		$eventidarray = mysqli_fetch_array($execute);
+		$eventid = $eventidarray['id'];
+		$insertincatcount="INSERT IGNORE INTO categorycount(categoryid,eventid,tweetcount) VALUES($catid,$eventid,0)";
+		$res = mysqli_query($link, $insertincatcount) or die("error line 262 ".mysqli_error($link));
+		
 			alert("Json encode: " +json_encode(array('success'=>true,
 			   	'id'=>$model->primaryKey)
 				));
+				
+		
+				
 			exit;
 		} else
 		{
