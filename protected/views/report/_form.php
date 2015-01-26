@@ -54,47 +54,31 @@ function hideOrNot(element){
 		<?php echo $form->checkBox($model,'showtwitterdailybreakdown',array('onchange'=>'hideOrNot(this);')); ?>
 		<?php echo $form->labelEx($model,'showtwitterdailybreakdown'); ?>
 		<?php echo $form->error($model,'showtwitterdailybreakdown'); ?>	
-				
+		
+		
 		<div id="hiddenDiv" style="display: inline">
 			<br>
-			&nbsp&nbsp<label for="from">From date</label>
+			&nbsp&nbsp
+			<?php
+			echo $form->labelEx($model,'breakdownfromd'); 
+			echo $form->dateField($model, 'breakdownfromd'); 
+			echo $form->error($model,'breakdownfromd'); 
+			 ?>
+			<br />
+			&nbsp&nbsp
+			<?php
+			echo $form->labelEx($model,'breakdowntod'); 
+			echo $form->dateField($model, 'breakdowntod'); 
+			echo $form->error($model,'breakdowntd');
+			?>
+			
+			<!--<label for="from">From date</label>
 			&nbsp&nbsp<input type="text" id="from" name="from">
 			<br>
 			&nbsp&nbsp<label for="to">To Date</label>
-			&nbsp&nbsp<input type="text" id="to" name="to">
+			&nbsp&nbsp<input type="text" id="to" name="to">-->
         </div>
- 	<!--<div class="row" id="hiddenDiv">
-		<?php /*echo $form->labelEx($model,'fromdate'); 
-		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
-				'model'=>$model,
-        		'attribute'=>'fromdate',
-				'options'=>array(
-					'dateFormat'=>'yy-m-d',
-					'showAnim'=>'fold',
-			),
-				'htmlOptions'=>array(
-					'style'=>'height:20px;'
-			),
-		));
-		 echo $form->error($model,'fromdate');*/ ?>
-	</div>
-	
-
-	<!--<div class="row" id="hiddenDiv">
-		<?php /*echo $form->labelEx($model,'todate'); 
-		$this->widget('zii.widgets.jui.CJuiDatePicker', array(
-				'model'=>$model,
-        		'attribute'=>'todate',
-				'options'=>array(
-					'dateFormat'=>'yy-m-d',
-					'showAnim'=>'fold',
-			),
-				'htmlOptions'=>array(
-					'style'=>'height:20px;'
-			),
-		));
-		echo $form->error($model,'todate'); */?>
-	</div>-->
+ 	
         
        <br>
 		<?php echo $form->checkBox($model,'option1'); ?>
