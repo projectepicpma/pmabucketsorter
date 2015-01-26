@@ -11,6 +11,7 @@ class ReportController extends Controller
 	/**
 	 * @return array action filters
 	 */
+	
 	public function filters()
 	{
 		return array(
@@ -178,13 +179,16 @@ class ReportController extends Controller
 		if(isset($_POST['Report']))
 		{
 			$model->attributes=$_POST['Report'];
+									
 			if($model->save())
 			{
+				
 				echo CJSON::encode(array(
 			                        'status'=>'success', 
 			                        'div'=>"Report successfully added",
 			                        'reportid'=>$model->id
 					));
+					
 					exit;
 
 			}
@@ -201,7 +205,8 @@ class ReportController extends Controller
 		$model->option1=true;
 		$model->option2=true;
 		$model->option3=true;
-		
+		$model->breakdownfromd = NULL;
+		$model->breakdowntod = NULL;
 		echo CJSON::encode(array(
 	                'status'=>'failure', 
 	                'div'=>$this->renderPartial('_form', array('model'=>$model), true)));
@@ -211,7 +216,6 @@ class ReportController extends Controller
 	
 	function actionGenerateReport()
 	{
-		echo "testing for committing to github";
 		$model=new Report;
 		
 		// Uncomment the following line if AJAX validation is needed
@@ -220,7 +224,6 @@ class ReportController extends Controller
 		if(isset($_GET['reportid']))
 		{
 			$before = microtime(TRUE);
-			//$model->attributes=$_POST['Report'];
 			$report= Report::model()->find('id=?', array($_GET['reportid']));			
 		
 		$user=User::model()->find('LOWER(username)=?',array(Yii::app()->user->name));
@@ -260,6 +263,7 @@ class ReportController extends Controller
 		$elapsedtime111;
 		$elapsedtime121;
 		$elapsedtime211;
+		$elapsedtime210;
 		$elapsedtime221;
 		$elapsedtime311;
 		$elapsedtime321;
@@ -273,6 +277,8 @@ class ReportController extends Controller
 		$elapsedtime621;
 		$elapsedtime631;
 		
+		$postdates;
+		
 		// If user selected to show the top ten Twitter Users perform the query that gets the needed data.
 		if ($report->showtwittertopten)
 		{
@@ -283,7 +289,7 @@ class ReportController extends Controller
 			$command = $connection->createCommand($sql);
 			$topTwitterUsers = $command->queryAll();
 			global $elapsedtime311;
-			$elapsedtime311 = microtime(TRUE)-$start111;
+			$elapsedtime311 = microtime(TRUE)-$start311;
 			
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
@@ -295,7 +301,7 @@ class ReportController extends Controller
 		// If user selected to show the Daily Twitter Breakdown perform the query that gets the needed data.
 		if ($report->showtwitterdailybreakdown)
 		{
-			$start211 = microtime(TRUE);
+			$start210 = microtime(TRUE);
 			//quick hack for a demo
 			//$sql="select created from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent." order by created DESC limit 1";
 			$sql="select created from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent.
@@ -310,13 +316,22 @@ class ReportController extends Controller
 			$sql="SELECT DATE(created) as date, COUNT(*) as tweetcount FROM tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent." AND DATE(created) >= DATE('".$oldestTweetDate[0]['created']."') AND DATE(created) <= DATE('".$newestTweetDate[0]['created']."') GROUP BY DATE(created)";
 			$command = $connection->createCommand($sql);
 			$tweetCountByDate = $command->queryAll();
-			global $elapsedtime211;
-			$elapsedtime211 = microtime(TRUE)-$start211;
+			global $elapsedtime210;
+			$elapsedtime210 = microtime(TRUE)-$start210;
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (24, '$elapsedtime211', '$eventTwitterNum', '$userid')";
+		         VALUES (24, '$elapsedtime210', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
+			
+			//==========new approach
+			$fromd = $report->breakdownfromd;
+			$tod = $report->breakdowntod;
+			$sql = "SELECT DATE(date) as date, sum(count) as tweetcount FROM twitterdailyactivity WHERE eventid=".$user->selectedevent." 
+			AND DATE(date) BETWEEN DATE('".$fromd."') AND DATE('".$tod."') GROUP BY date" ;
+			
+			$command = $connection->createCommand($sql);
+			$tweetCountByDate = $command->queryAll();
 		}
 		
 		
@@ -423,7 +438,7 @@ class ReportController extends Controller
 					    'font' => 'Arial',
 					    'color'=> FF0000,
 		);
-		
+				
 		$docx->addText($event->name, $paramsText);
 	
 		$text="Twitter Communication Report";
@@ -499,7 +514,7 @@ class ReportController extends Controller
 			$docx->addText($disclaimer, $disclaimerText);
 			$text = "The following table and graph shows the number of Twitter messages sent by date in the tweet dataset for the ".$event->name." Event:";
 			$docx->addText($text, $paramsText);
-				
+			
 			$valuesTable = array( array("Date", "Number of Tweets"));
 			
 			foreach($tweetCountByDate as $tweetCount)
@@ -536,7 +551,6 @@ class ReportController extends Controller
 			$docx->addGraphic($args);
 			global $elapsedtime221;
 			$elapsedtime221 = microtime(TRUE)-$start221;
-			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (25, '$elapsedtime221', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
@@ -593,9 +607,6 @@ class ReportController extends Controller
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
 		}
-	
-	
-	
 		// If user selected to show the Top Twenty Hashtags perform the query that gets the needed data.
 		if ($report->option2)
 		{
@@ -690,11 +701,6 @@ class ReportController extends Controller
 		readfile($filename.'.docx');
 		unlink($filename.'.docx');
 		
-		//$myfile = fopen("performanceloggingtest.txt", "w") or die("Unable to open file!");
-		//$txt = "the elapsed time is ".number_format(( microtime(true) - $before), 4) . " Seconds\n";
-		//fwrite($myfile, $txt);
-		//fclose($myfile);
-		//print "the elapsed time is ".microtime(TRUE) - $before;
 		$elapsedtime = microtime(TRUE) - $before;
 		
 		
