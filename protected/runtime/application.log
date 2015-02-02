@@ -19116,3 +19116,486 @@ REQUEST_URI=/bucketsorter/report/createReport
 in C:\xampp\htdocs\bucketsorter\protected\models\Report.php (60)
 in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (191)
 in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 03:27:46 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\bucketsorter\protected\views\site\index.php:4)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 C:\xampp\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 C:\xampp\htdocs\bucketsorter\protected\controllers\SiteController.php(241): SiteController->render()
+#3 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): SiteController->runAction()
+#6 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): SiteController->filterAccessControl()
+#9 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#12 C:\xampp\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#13 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/
+in C:\xampp\htdocs\bucketsorter\protected\views\site\index.php (4)
+in C:\xampp\htdocs\bucketsorter\protected\controllers\SiteController.php (241)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 03:27:49 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\bucketsorter\protected\views\site\index.php:4)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): SiteController->renderFile()
+#1 C:\xampp\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#2 C:\xampp\htdocs\bucketsorter\protected\controllers\SiteController.php(241): SiteController->render()
+#3 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#4 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): SiteController->runAction()
+#6 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): SiteController->filterAccessControl()
+#9 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#12 C:\xampp\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#13 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/
+in C:\xampp\htdocs\bucketsorter\protected\views\site\index.php (4)
+in C:\xampp\htdocs\bucketsorter\protected\controllers\SiteController.php (241)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 05:47:11 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 05:50:22 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 05:51:53 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 08:12:42 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 07:22:47 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.5992579460144', '0', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (710)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 07:22:47 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.5992579460144', '0', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(710): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=174
+HTTP_REFERER=http://localhost/bucketsorter/site/coding?level=60
+---
+2015/01/26 08:24:11 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 07:59:36 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.42103505134583', '0', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (710)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 07:59:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.42103505134583', '0', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(710): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=175
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 09:04:04 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:04:42 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '559622809752580097-60' for key 'TweetCoding'. The SQL statement executed was: INSERT INTO `coding` (`userid`, `level`, `tweetid`, `coding`) VALUES (:yp0, :yp1, :yp2, :yp3).
+in C:\xampp\htdocs\bucketsorter\protected\components\Controller.php (44)
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (41)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:04:42 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '559622809752580097-58' for key 'TweetCoding'. The SQL statement executed was: INSERT INTO `coding` (`userid`, `level`, `tweetid`, `coding`) VALUES (:yp0, :yp1, :yp2, :yp3).
+in C:\xampp\htdocs\bucketsorter\protected\components\Controller.php (44)
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (41)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:21:03 [error] [php] mysqli_query() expects parameter 1 to be mysqli, resource given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:47)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (47)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:21:10 [error] [php] mysqli_query() expects parameter 1 to be mysqli, resource given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:47)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (47)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:23:51 [error] [php] mysqli_query() expects parameter 1 to be mysqli, resource given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:47)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (47)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:38:51 [error] [php] mysqli_select_db() expects exactly 2 parameters, 1 given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:44)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (44)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:38:56 [error] [php] mysqli_select_db() expects exactly 2 parameters, 1 given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:44)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (44)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:38:58 [error] [php] mysqli_select_db() expects exactly 2 parameters, 1 given (C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php:44)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\yii\framework\web\CController.php(286): CodingController->runAction()
+#2 C:\xampp\yii\framework\web\CController.php(265): CodingController->runActionWithFilters()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(282): CodingController->run()
+#4 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/coding/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (44)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:40:15 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '559622340494249984-59' for key 'TweetCoding'. The SQL statement executed was: INSERT INTO `coding` (`userid`, `level`, `tweetid`, `coding`) VALUES (:yp0, :yp1, :yp2, :yp3).
+in C:\xampp\htdocs\bucketsorter\protected\components\Controller.php (44)
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CodingController.php (41)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 08:49:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.21143388748169', '19', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (718)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 08:49:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.21143388748169', '19', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(718): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=176
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 08:51:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.20067811012268', '19', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (718)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 08:51:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.20067811012268', '19', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(718): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=177
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 09:53:44 [error] [php] Array to string conversion (C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php:369)
+Stack trace:
+#0 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): ReportController->runAction()
+#1 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): ReportController->filterAccessControl()
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): ReportController->runActionWithFilters()
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): ReportController->run()
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=178
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (369)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:00:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.23439598083496', '19', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (725)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:00:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.23439598083496', '19', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(725): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=182
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 09:02:35 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.20123291015625', '19', '1').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php (729)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 09:02:35 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (2, '0.20123291015625', '19', '1')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\ReportController.php(729): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): ReportController->actionGenerateReport()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('generateReport')
+#12 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('report/generate...')
+#13 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/bucketsorter/report/generateReport?reportid=183
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 10:20:17 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT * FROM `event` `t` WHERE rootcategoryid=?.
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php (252)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 10:20:17 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined. The SQL statement executed was: SELECT * FROM `event` `t` WHERE rootcategoryid=?' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\yii\framework\db\ar\CActiveRecord.php(1351): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#3 C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php(252): CActiveRecord->findAll('rootcategoryid=...', Array)
+#4 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): CategoryController->actionCreate()
+#5 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#9 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('category/create')
+#10 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/bucketsorter/category/create
+HTTP_REFERER=http://localhost/bucketsorter/site/coding
+---
+2015/01/26 10:55:07 [error] [php] Undefined variable: connection (C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php:262)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): CategoryController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): CategoryController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): CategoryController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/category/create
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php (262)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 10:56:01 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'count' in 'field list'. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,count) 
+		                   VALUES('57','1','0').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php (264)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 10:56:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'count' in 'field list'. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,count) 
+		                   VALUES('57','1','0')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php(264): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): CategoryController->actionCreate()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#7 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('category/create')
+#8 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/bucketsorter/category/create
+HTTP_REFERER=http://localhost/bucketsorter/site/streaming
+---
+2015/01/26 10:56:37 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,tweetcount) 
+		                   VALUES('57','1','0').
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php (264)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 10:56:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,tweetcount) 
+		                   VALUES('57','1','0')' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php(264): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): CategoryController->actionCreate()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#7 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('category/create')
+#8 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/bucketsorter/category/create
+HTTP_REFERER=http://localhost/bucketsorter/site/streaming
+---
+2015/01/26 10:57:28 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,tweetcount) 
+		                   VALUES(57,1,0).
+in C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php (264)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 10:57:28 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error. The SQL statement executed was: INSERT INTO categorycount(categoryid,eventid,tweetcount) 
+		                   VALUES(57,1,0)' in C:\xampp\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\bucketsorter\protected\controllers\CategoryController.php(264): CDbCommand->queryAll()
+#2 C:\xampp\yii\framework\web\actions\CInlineAction.php(49): CategoryController->actionCreate()
+#3 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#7 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('category/create')
+#8 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\bucketsorter\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/bucketsorter/category/create
+HTTP_REFERER=http://localhost/bucketsorter/site/streaming
+---
+2015/01/26 11:40:05 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)
+2015/01/26 11:42:37 [error] [php] Undefined offset: 0 (C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php:51)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(286): TweetsController->runAction()
+#1 C:\xampp\yii\framework\web\CController.php(265): TweetsController->runActionWithFilters()
+#2 C:\xampp\yii\framework\web\CWebApplication.php(282): TweetsController->run()
+#3 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#5 C:\xampp\htdocs\bucketsorter\index.php(13): CWebApplication->run()
+REQUEST_URI=/bucketsorter/tweets/loadTweets
+in C:\xampp\htdocs\bucketsorter\protected\controllers\TweetsController.php (51)
+in C:\xampp\htdocs\bucketsorter\index.php (13)

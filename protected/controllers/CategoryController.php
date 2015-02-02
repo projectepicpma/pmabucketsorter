@@ -209,20 +209,9 @@ class CategoryController extends Controller
 
 		if(isset($_POST['Category']))
 		{
-			// inserting in cateforycount not working.
-			$link = mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9","twitterbucketsort");
-        
+			
 			$new_root=new Category;
 			$new_root->attributes=$_POST['Category'];
-			
-			$geteventid = "SELECT id FROM event where rootcategoryid=".$new_root->root." LIMIT 1";
-			$execute = mysqli_query($link, $geteventid) or die("error at line 218 ".mysqli_error($link));
-			$eventidarray = mysqli_fetch_array($execute);
-			$eventid = $eventidarray['id'];
-			$insertincatcount="INSERT INTO categorycount(categoryid,eventid,count) 
-		                   VALUES('$catid','$eventid','0')";
-			mysqli_close($link);
-		
 			
 			if($new_root->saveNode(false, $_POST['Category'])){
 				echo json_encode(array('success'=>true,
@@ -264,7 +253,8 @@ class CategoryController extends Controller
 		$execute = mysqli_query($link, $geteventid) or die("error at line 254 ".mysqli_error($link));
 		$eventidarray = mysqli_fetch_array($execute);
 		$eventid = $eventidarray['id'];
-		$insertincatcount="INSERT IGNORE INTO categorycount(categoryid,eventid,tweetcount) VALUES($catid,$eventid,0)";
+		$insertincatcount="INSERT IGNORE INTO categorycount(categoryid,eventid,tweetcount) 
+		                   VALUES($catid,$eventid,0)";
 		$res = mysqli_query($link, $insertincatcount) or die("error line 262 ".mysqli_error($link));
 		
 			alert("Json encode: " +json_encode(array('success'=>true,
@@ -290,7 +280,7 @@ public function actionUpdate(){
 		if(isset($_POST['Category']))
 		{
 
-                        $model=$this->loadModel($_POST['update_id']);
+            $model=$this->loadModel($_POST['update_id']);
 			$model->attributes=$_POST['Category'];
 
 			if( $model->saveNode(false)){
