@@ -232,10 +232,12 @@ class ReportController extends Controller
 		$filename = $report->name;
 	
 		// All the database work needs to be done before the YiiBase is unregistered
-		$sql = "select count(*) from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=:currentevent";
+		//$sql = "select count(*) from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=:currentevent";
+		$sql = "select tweetscollected from event where id=:currentevent";
 		$params=array(':currentevent'=>$user->selectedevent);
 	
-		$eventTwitterNum = Tweets::model()->countBySql($sql, $params);
+		//$eventTwitterNum = Tweets::model()->countBySql($sql, $params);
+		$eventTwitterNum = Event::model()->countBySql($sql, $params);
 		
 		$connection = Yii::app()->db;
 		
@@ -260,38 +262,42 @@ class ReportController extends Controller
 			"These messages were collected using the search term(s): ".$filterString;
 		
 		$userid=Yii::app()->user->id;
-		$elapsedtime111;
-		$elapsedtime121;
-		$elapsedtime211;
-		$elapsedtime210;
-		$elapsedtime221;
-		$elapsedtime311;
-		$elapsedtime321;
-		$elapsedtime411;
-		$elapsedtime421;
-		$elapsedtime431;
-		$elapsedtime511;
-		$elapsedtime521;
-		$elapsedtime531;
-		$elapsedtime611;
-		$elapsedtime621;
-		$elapsedtime631;
+		$elapsedtime111; // category count: gathering data
+		$elapsedtime121; // category count: putting to word
+		$elapsedtime211; // twitterdailyactivity: gathering data
+		$elapsedtime221; // twitterdailyactivity: putting to word
+		$elapsedtime311; // top user: gathering data
+		$elapsedtime321; // top user: putting to word
+		$elapsedtime411; // tophashtag: gathering data
+		$elapsedtime421; // tophashtag: putting to word
+		$elapsedtime511; // toprts: gathering data		
+		$elapsedtime521; // toprts: putting to word
+		$elapsedtime611; // totaltime: gathering data
+		$elapsedtime621; // totaltime: putting to word
 		
 		$postdates;
 		
 		// If user selected to show the top ten Twitter Users perform the query that gets the needed data.
 		if ($report->showtwittertopten)
 		{
-			$start311 = microtime(TRUE);
+			
+			
 			// can use max() in this query
-			$sql = "select fromuser, count(*) as tweetcount from tweets a INNER JOIN tweetevent b USING(tweetid) 
+			/*$sql = "select fromuser, count(*) as tweetcount from tweets a INNER JOIN tweetevent b USING(tweetid) 
 			        where b.eventid=".$user->selectedevent." group by a.fromuser order by count(*) DESC limit 10";
 			$command = $connection->createCommand($sql);
-			$topTwitterUsers = $command->queryAll();
+			$topTwitterUsers = $command->queryAll();*/
+						
+			//============new approach==============
+			$start311 = microtime(TRUE);
 			global $elapsedtime311;
-			$elapsedtime311 = microtime(TRUE)-$start311;
 			
+			$tablename="topuser".$user->selectedevent;
+			$sql = "select username, count from ".$tablename." order by count desc limit 20";
+			$command = $connection->createCommand($sql);
+			$topTwitterUsers = $command->queryAll();
 			
+			$elapsedtime311 = microtime(TRUE)-$start311;			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (27, '$elapsedtime311', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
@@ -301,10 +307,9 @@ class ReportController extends Controller
 		// If user selected to show the Daily Twitter Breakdown perform the query that gets the needed data.
 		if ($report->showtwitterdailybreakdown)
 		{
-			$start210 = microtime(TRUE);
 			//quick hack for a demo
 			//$sql="select created from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent." order by created DESC limit 1";
-			$sql="select created from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent.
+			/*$sql="select created from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent.
 			" order by created ASC limit 1";
 			$command = $connection->createCommand($sql);
 			$oldestTweetDate = $command->queryAll();
@@ -316,30 +321,57 @@ class ReportController extends Controller
 			$sql="SELECT DATE(created) as date, COUNT(*) as tweetcount FROM tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent." AND DATE(created) >= DATE('".$oldestTweetDate[0]['created']."') AND DATE(created) <= DATE('".$newestTweetDate[0]['created']."') GROUP BY DATE(created)";
 			$command = $connection->createCommand($sql);
 			$tweetCountByDate = $command->queryAll();
-			global $elapsedtime210;
-			$elapsedtime210 = microtime(TRUE)-$start210;
+			*/
 			
-			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (24, '$elapsedtime210', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
-			
-			//==========new approach
+			//==========new approach==============
+			$start211 = microtime(TRUE);
 			$fromd = $report->breakdownfromd;
 			$tod = $report->breakdowntod;
+			
+			if($this->IsNullOrEmptyString($fromd) && $this->IsNullOrEmptyString($tod))
+			{
+				// setting default dates
+				$fromd = $event->startdate;
+				$tod = date('Y-m-d', strtotime($fromd. ' + 7 days'));
+				//echo "in if1";
+				//echo "from ".$fromd." to ".$tod;
+			
+			}
+			elseif ($this->IsNullOrEmptyString($fromd) && !$this->IsNullOrEmptyString($tod)) 
+			{
+				$fromd = date('Y-m-d', strtotime($tod. ' - 7 days'));
+				//echo "in ifelse1";
+				//echo "from ".$fromd." to ".$tod;
+							
+			}
+			elseif(!$this->IsNullOrEmptyString($fromd) && $this->IsNullOrEmptyString($tod))
+			{
+				$tod = date('Y-m-d', strtotime($fromd. ' + 7 days'));	
+				//echo "in ifelse2";
+				//echo "from ".$fromd." to ".$tod;
+			
+			}
+			//die();
 			$sql = "SELECT DATE(date) as date, sum(count) as tweetcount FROM twitterdailyactivity WHERE eventid=".$user->selectedevent." 
 			AND DATE(date) BETWEEN DATE('".$fromd."') AND DATE('".$tod."') GROUP BY date" ;
 			
 			$command = $connection->createCommand($sql);
 			$tweetCountByDate = $command->queryAll();
+			
+			global $elapsedtime211;
+			$elapsedtime211 = microtime(TRUE)-$start211;
+			
+			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
+		         VALUES (24, '$elapsedtime211', '$eventTwitterNum', '$userid')";
+			//$command = $connection->createCommand($sql);
+			//$performanceLogging = $command->queryAll();
 		}
 		
 		
 		// If user selected to show the Category Twitter Breakdown perform the query that gets the needed data.
 		if ($report->option1)
 		{
-			$start111 = microtime(TRUE);
-			$categories=Category::model()->findAll('root=? order by lft',array($event->rootcategoryid));
+			/*$categories=Category::model()->findAll('root=? order by lft',array($event->rootcategoryid));
 		
 			$categoryCounts = array();
 			
@@ -352,7 +384,17 @@ class ReportController extends Controller
 			}
 			//print_r($categoryCounts);
 			
-			$categoryCounts[0][1]=$eventTwitterNum;
+			$categoryCounts[0][1]=$eventTwitterNum;*/
+			
+			
+			
+			//=======new approach========
+			$start111 = microtime(TRUE);
+			$newsql = "SELECT category.name, categorycount.tweetcount FROM categorycount 
+			           INNER JOIN category ON categorycount.categoryid = category.id
+			           WHERE eventid=".$user->selectedevent;
+			$command = $connection->createCommand($newsql);
+			$categoryCounts = $command->queryAll();
 			global $elapsedtime111;
 			$elapsedtime111 = microtime(TRUE)-$start111;
 			
@@ -360,25 +402,29 @@ class ReportController extends Controller
 		         VALUES (21, '$elapsedtime111', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
-			
-			
-			//=======new approach========
-			$newsql = "SELECT category.name, categorycount.tweetcount FROM categorycount 
-			           INNER JOIN category ON categorycount.categoryid = category.id
-			           WHERE eventid=".$user->selectedevent;
-			$command = $connection->createCommand($newsql);
-			$categoryCounts = $command->queryAll();
-			//echo "cat counts ".print_r($categoryCounts)." query ".$newsql;
-			//die();
 		}
 		
 		// If user selected to show the Top Twenty Hashtags perform the query that gets the needed data.
 		if ($report->option2)
 		{
+			/*
+			 * $hashtagCounts=array();
+			$tablename = "maxhash".$user->selectedevent;
+			$sql="select text from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent;
+			$command = $connection->createCommand($sql);
+			$eventTweets = $command->queryAll();
+			
+			foreach($eventTweets as $eventTweet)
+			{
+				$hashtagCounts[$eventTweet['hashtag']] = $eventTweet['count'];
+			}
+			arsort($hashtagCounts);
+			$hashtagCounts=array_slice($hashtagCounts,0,20);*/
+						
+			//============new approach===================
 			$start411 = microtime(TRUE);
 			$hashtagCounts=array();
 			$tablename = "maxhash".$user->selectedevent;
-			//$sql="select text from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent;
 			$sql = "select hashtag, count from ".$tablename." order by count desc limit 20";
 			$command = $connection->createCommand($sql);
 			$eventTweets = $command->queryAll();
@@ -387,7 +433,6 @@ class ReportController extends Controller
 			{
 				$hashtagCounts[$eventTweet['hashtag']] = $eventTweet['count'];
 			}
-			//arsort($hashtagCounts);
 			$hashtagCounts=array_slice($hashtagCounts,0,20);
 			global $elapsedtime411;
 			$elapsedtime411 = microtime(TRUE)-$start411;
@@ -395,21 +440,16 @@ class ReportController extends Controller
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (30, '$elapsedtime411', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();			
+			//$performanceLogging = $command->queryAll();
+						
 		}
 		
 		// If user selected to show the Top Retweets perform the query that gets the needed data.
 		if ($report->option3)
 		{
-			$start511 = microtime(TRUE);
-			$tablename = "maxrt".$user->selectedevent;
-			$alternatesql = "select * from ".$tablename;//."order by retweetcount DESC  limit 20";
-			//$toprt = mysql_query($alternatesql);
-			$command = $connection->createCommand($alternatesql);
-			$topRetweets = $command->queryAll();
 			//$hashtagCounts=array();
 			//$sql="select retweetid, max(retweetcount) as MaxTweetCount from tweets  where retweetid group by retweetid order by MaxTweetCount DESC limit 20;";
-			$sql="select tweetid, text, fromuser, max(retweetcount) as MaxTweetCount 
+			/*$sql="select tweetid, text, fromuser, max(retweetcount) as MaxTweetCount 
 			from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=".$user->selectedevent." 
 			group by tweetid order by MaxTweetCount DESC  limit 20";
 			/*$sql="select t.retweetid, rt.text, rt.fromuser, t.MaxTweetCount from 
@@ -417,9 +457,18 @@ class ReportController extends Controller
 			 * where retweetid and b.eventid=".$user->selectedevent." 
 			 * group by retweetid order by MaxTweetCount DESC limit 20) t, tweets rt where t.retweetid=rt.tweetid 
 			 * order by MaxTweetCount DESC";
-			 * */
-			//$command = $connection->createCommand($sql);
-			//$topRetweets = $command->queryAll();
+			 * 
+			$command = $connection->createCommand($sql);
+			$topRetweets = $command->queryAll();*/
+			
+			
+			//============new approach=================
+			$start511 = microtime(TRUE);
+			$tablename = "maxrt".$user->selectedevent;
+			$alternatesql = "select * from ".$tablename." order by retweetcount DESC  limit 20";
+			//$toprt = mysql_query($alternatesql);
+			$command = $connection->createCommand($alternatesql);
+			$topRetweets = $command->queryAll();
 			global $elapsedtime511;
 			$elapsedtime511 = microtime(TRUE)-$start511;
 			
@@ -427,6 +476,7 @@ class ReportController extends Controller
 		         VALUES (33, '$elapsedtime511', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
+			
 		}
 		
 		// Unregister the Yii autoload so that phpocx autoload will work properly
@@ -498,7 +548,12 @@ class ReportController extends Controller
 		
 			foreach($topTwitterUsers as $twitterUser)
 			{
-				array_push($valuesTable, array($twitterUser['fromuser'],$twitterUser['tweetcount']));
+				// old approach	
+				//array_push($valuesTable, array($twitterUser['fromuser'],$twitterUser['tweetcount']));
+				
+				//new approach
+				array_push($valuesTable, array($twitterUser['username'],$twitterUser['count']));
+				
 			}
 		
 			$paramsTable = array(
@@ -508,10 +563,10 @@ class ReportController extends Controller
 		
 			$docx->addTable($valuesTable, $paramsTable);
 			global $elapsedtime321;
-			$elapsedtime321 = microtime(TRUE)-$start121;
+			$elapsedtime321 = microtime(TRUE)-$start321;
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (22, '$elapsedtime121', '$eventTwitterNum', '$userid')";
+		         VALUES (28, '$elapsedtime321', '$eventTwitterNum', '$userid')";
 			//$command = $connection->createCommand($sql);
 			//$performanceLogging = $command->queryAll();
 		}
@@ -588,7 +643,7 @@ class ReportController extends Controller
 				// for new approach
 				array_push($valuesTable, array($tweetCount['name'],$tweetCount['tweetcount']));
 			}
-				
+			array_push($valuesTable, array($event->name, $eventTwitterNum));	
 			$paramsTable = array(
 										    'border' => 'single',
 										    'border_sz' => 20,
@@ -606,7 +661,10 @@ class ReportController extends Controller
 				
 				// for new approach
 				$legends[$tweetCount['name']]=array($tweetCount['tweetcount']);
+				
 			}
+			$namestring = $event->name."(total tweets)";
+			$legends[$namestring] =  array($eventTwitterNum);
 			$args = array(
 							    'data' => $legends,
 							    'type' => 'colChart',
@@ -642,9 +700,13 @@ class ReportController extends Controller
 			foreach($hashtagCounts as $key => $value)
 			{
 				$percentTweets=round($value/$eventTwitterNum * 100) . '%';
+				echo "key ".$key."\n";
+				echo "value ".$value."\n";
+				echo "total ".$eventTwitterNum."\n";
+				echo "percent ".$percentTweets."\n";
 				array_push($valuesTable, array("#".$key, $value, $percentTweets));
 			}
-				
+			die();	
 			$paramsTable = array(
 												    'border' => 'single',
 												    'border_sz' => 20,
@@ -676,7 +738,11 @@ class ReportController extends Controller
 			//t.retweetid, rt.text, rt.fromuser, t.MaxTweetCount
 			foreach($topRetweets as $topRetweet)
 			{
-				array_push($valuesTable, array($topRetweet['text'], $topRetweet['MaxTweetCount']));
+				// old approach	
+				//array_push($valuesTable, array($topRetweet['text'], $topRetweet['MaxTweetCount']));
+				
+				//new approach
+				array_push($valuesTable, array($topRetweet['text'], $topRetweet['retweetcount']));
 			}
 			
 					
@@ -726,7 +792,7 @@ class ReportController extends Controller
 		$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (2, '$elapsedtime', '$eventTwitterNum', '$userid')";
 		$command = $connection->createCommand($sql);
-		$performanceLogging = $command->queryAll();
+		//$performanceLogging = $command->queryAll();
 		
 		global $elapsedtime111 ; 
 		global $elapsedtime211 ; 
@@ -904,4 +970,9 @@ class ReportController extends Controller
 		
 		$docx->addLink('Link to Google', 'http://www.google.es', 'Arial');
 	}
+function IsNullOrEmptyString($question){
+	 if(strcmp($question,"0000-00-00")==0)
+	 return TRUE;
+	 else return false;
+}
 }
