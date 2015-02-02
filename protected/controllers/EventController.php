@@ -127,6 +127,7 @@ class EventController extends Controller
         		//$command = $connection->createCommand($sql);
         		$query = mysqli_query(mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort"), $sql);
         		
+        		
         		// for max hashtag count
         		$tablename = "maxhash".$model->id;
 				$connection=Yii::app()->db;
@@ -141,6 +142,27 @@ class EventController extends Controller
         		//$command = $connection->createCommand($sql);
         		$query = mysqli_query(mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort"), $sql);
         		
+        		
+        		// for topuser report feature
+        		$tablename = "topuser".$model->id;
+				$connection=Yii::app()->db;
+        		
+        		$sql = "CREATE TABLE IF NOT EXISTS ".$tablename." (
+						  `id` int(11) NOT NULL AUTO_INCREMENT,
+						  `userid` varchar(20) NOT NULL,
+						  `username` varchar(20) NOT NULL,
+						  `count` bigint(20) NOT NULL,
+						  PRIMARY KEY (`id`),
+						  KEY `userid` (`userid`),
+						  KEY `count` (`count`),
+						  CONSTRAINT `".$tablename."` FOREIGN KEY (`userid`) 
+						  REFERENCES `tweets` (`fromuserid`) ON DELETE CASCADE ON UPDATE CASCADE
+						) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";	
+				$link = mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort");		
+        		$query = mysqli_query($link, $sql) or die("cant create topuser table ".mysqli_error($link));
+        		
+        		        		
+        		mysqli_close(mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort"));
 				$this->redirect(Yii::app()->createUrl("site/streaming"));
 				
 			}
@@ -211,7 +233,12 @@ class EventController extends Controller
 		{
 			// we only allow deletion via POST request
 			$this->loadModel($id)->delete();
-			// write code for dropping tables maxrt[eventid] and maxhash[eventid]
+			$rttable = "maxrt".$id;
+			$hashtagtable= "maxhash".$id;
+			$topusertable = "topuser".$id;
+			$dropsql = "DROP TABLE IF EXISTS ".$rttable.",".$hashtagtable.",".$topusertable;
+			$dropres=mysqli_query(mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort"), $dropsql);
+        		
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
