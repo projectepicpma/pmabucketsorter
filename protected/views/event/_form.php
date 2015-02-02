@@ -22,17 +22,22 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'startdate'); ?>
+		<?php echo $form->labelEx($model,'startdate'); 
+		// setting to mountain time zone, otherwise the default time zone is UTC
+		date_default_timezone_set('America/Denver');
+		$defaultdate =  date("Y-m-d");?>
 		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 				'model'=>$model,
         		'attribute'=>'startdate',
 				'options'=>array(
 					'dateFormat'=>'yy-m-d',
+					'defaultDate' => $defaultdate,
 					'showAnim'=>'fold',
 					
 			),
 				'htmlOptions'=>array(
 					'style'=>'height:20px;',
+					'value'=>$defaultdate,
 					
 			),
 		));?>
