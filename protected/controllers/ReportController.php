@@ -706,7 +706,6 @@ class ReportController extends Controller
 				echo "percent ".$percentTweets."\n";
 				array_push($valuesTable, array("#".$key, $value, $percentTweets));
 			}
-			die();	
 			$paramsTable = array(
 												    'border' => 'single',
 												    'border_sz' => 20,
