@@ -49,10 +49,18 @@ class CodingController extends Controller
 			  $count = mysqli_fetch_array($checkresult); 
 			  $newcount = $count['tweetcount'] + 1;
 	          
-			  $updatequery = "UPDATE categorycount SET tweetcount=".$newcount." 
-			                  WHERE eventid=".$eventid." AND categoryid=".$code;
-			  $updateresult = mysqli_query($link, $updatequery) or die("cannot update result at line 55 ".mysqli_error($link));
+			  $updatequery = "UPDATE categorycount set tweetcount = tweetcount+1 where categoryid in (SELECT parent.id
+							  FROM category AS node, category AS parent
+							  WHERE node.lft >= parent.lft AND node.rgt <= parent.rgt
+        					  AND node.id = ".$code." and parent.level != 1
+							  ORDER BY node.lft)";
+			  
+			  /*"UPDATE categorycount SET tweetcount=".$newcount." 
+			                  WHERE eventid=".$eventid." AND categoryid=".$code;*/
+			  $updateresult = mysqli_query($link, $updatequery) or die("cannot update result at line 60 ".mysqli_error($link));
 			}
+			// this block will never be executed as a row will be inserted as soon as a category is created.
+			// coding defensively here. 
 			elseif (mysqli_num_rows($checkresult) == 0) 
 			{
 				$insertquery = "INSERT INTO categorycount(categoryid, eventid,tweetcount) 
@@ -89,7 +97,7 @@ class CodingController extends Controller
 		$tweet=Tweets::model()->find('tweetid=?', array($tweetid));
 		
 		$tweet->categories=$codes;
-		$tweet->save();
+		//$tweet->save();
 		echo $codes;
 		
 	}
