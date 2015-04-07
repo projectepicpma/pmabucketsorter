@@ -61,7 +61,8 @@ class CodingController extends Controller
 			}
 			// this block will never be executed as a row will be inserted as soon as a category is created.
 			// coding defensively here. 
-			elseif (mysqli_num_rows($checkresult) == 0) 
+			// not to be performed for root category
+			elseif (mysqli_num_rows($checkresult) == 0 && $code!=$event->rootcategoryid) 
 			{
 				$insertquery = "INSERT INTO categorycount(categoryid, eventid,tweetcount) 
 				                VALUES('$code','$eventid',1)";
