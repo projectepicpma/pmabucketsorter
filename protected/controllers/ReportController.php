@@ -232,12 +232,12 @@ class ReportController extends Controller
 		$filename = $report->name;
 	
 		// All the database work needs to be done before the YiiBase is unregistered
-		//$sql = "select count(*) from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=:currentevent";
-		$sql = "select tweetscollected from event where id=:currentevent";
+		$sql = "select count(*) from tweets a INNER JOIN tweetevent b USING(tweetid) where b.eventid=:currentevent";
+		//$sql = "select tweetscollected from event where id=:currentevent";
 		$params=array(':currentevent'=>$user->selectedevent);
 	
-		//$eventTwitterNum = Tweets::model()->countBySql($sql, $params);
-		$eventTwitterNum = Event::model()->countBySql($sql, $params);
+		$eventTwitterNum = Tweets::model()->countBySql($sql, $params);
+		//$eventTwitterNum = Event::model()->countBySql($sql, $params);
 		
 		$connection = Yii::app()->db;
 		
@@ -299,9 +299,9 @@ class ReportController extends Controller
 			
 			$elapsedtime311 = microtime(TRUE)-$start311;			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (27, '$elapsedtime311', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+		         VALUES (27, $elapsedtime311, 10, $userid)";
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 	
 		// If user selected to show the Daily Twitter Breakdown perform the query that gets the needed data.
@@ -332,21 +332,21 @@ class ReportController extends Controller
 			{
 				// setting default dates
 				$fromd = $event->startdate;
-				$tod = date('Y-m-d', strtotime($fromd. ' + 7 days'));
+				$tod = date('Y-m-d', strtotime($fromd. ' + 1000 days'));
 				//echo "in if1";
 				//echo "from ".$fromd." to ".$tod;
 			
 			}
 			elseif ($this->IsNullOrEmptyString($fromd) && !$this->IsNullOrEmptyString($tod)) 
 			{
-				$fromd = date('Y-m-d', strtotime($tod. ' - 7 days'));
+				$fromd = date('Y-m-d', strtotime($tod. ' - 1000 days'));
 				//echo "in ifelse1";
 				//echo "from ".$fromd." to ".$tod;
 							
 			}
 			elseif(!$this->IsNullOrEmptyString($fromd) && $this->IsNullOrEmptyString($tod))
 			{
-				$tod = date('Y-m-d', strtotime($fromd. ' + 7 days'));	
+				$tod = date('Y-m-d', strtotime($fromd. ' + 1000 days'));	
 				//echo "in ifelse2";
 				//echo "from ".$fromd." to ".$tod;
 			
@@ -363,8 +363,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (24, '$elapsedtime211', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 		
 		
@@ -400,8 +400,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (21, '$elapsedtime111', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 		
 		// If user selected to show the Top Twenty Hashtags perform the query that gets the needed data.
@@ -438,9 +438,9 @@ class ReportController extends Controller
 			$elapsedtime411 = microtime(TRUE)-$start411;
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (30, '$elapsedtime411', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+		         VALUES (30, '$elapsedtime411', 5, '$userid')";
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 						
 		}
 		
@@ -474,8 +474,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (33, '$elapsedtime511', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 			
 		}
 		
@@ -567,8 +567,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (28, '$elapsedtime321', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 	
 		// If user selected to show the Daily Twitter Breakdown add it to the report
@@ -619,8 +619,8 @@ class ReportController extends Controller
 			$elapsedtime221 = microtime(TRUE)-$start221;
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (25, '$elapsedtime221', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 	
 	
@@ -681,8 +681,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (22, '$elapsedtime121', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 		// If user selected to show the Top Twenty Hashtags perform the query that gets the needed data.
 		if ($report->option2)
@@ -700,12 +700,13 @@ class ReportController extends Controller
 			foreach($hashtagCounts as $key => $value)
 			{
 				$percentTweets=round($value/$eventTwitterNum * 100) . '%';
-				echo "key ".$key."\n";
+				/*echo "key ".$key."\n";
 				echo "value ".$value."\n";
 				echo "total ".$eventTwitterNum."\n";
-				echo "percent ".$percentTweets."\n";
+				echo "percent ".$percentTweets."\n";*/
 				array_push($valuesTable, array("#".$key, $value, $percentTweets));
 			}
+			//die();	
 			$paramsTable = array(
 												    'border' => 'single',
 												    'border_sz' => 20,
@@ -717,8 +718,8 @@ class ReportController extends Controller
 			
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (31, '$elapsedtime421', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 		
 		
@@ -757,8 +758,8 @@ class ReportController extends Controller
 						
 			$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (34, '$elapsedtime521', '$eventTwitterNum', '$userid')";
-			//$command = $connection->createCommand($sql);
-			//$performanceLogging = $command->queryAll();
+			$command = $connection->createCommand($sql);
+			$performanceLogging = $command->query();
 		}
 	
 		$docx->createDocx($filename);
@@ -790,10 +791,10 @@ class ReportController extends Controller
 		
 		$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
 		         VALUES (2, '$elapsedtime', '$eventTwitterNum', '$userid')";
-		$command = $connection->createCommand($sql);
+		//$command = $connection->createCommand($sql);
 		//$performanceLogging = $command->queryAll();
 		
-		global $elapsedtime111 ; 
+		/*global $elapsedtime111 ; 
 		global $elapsedtime211 ; 
 		global $elapsedtime311 ; 
 		global $elapsedtime411 ;
@@ -803,20 +804,20 @@ class ReportController extends Controller
 		global $elapsedtime221 ; 
 		global $elapsedtime321 ; 
 		global $elapsedtime421 ;
-		global $elapsedtime521 ; 
+		global $elapsedtime521 ; */
 		
 		$totaltime611 = $elapsedtime111 + $elapsedtime211 + $elapsedtime311 + $elapsedtime411 + $elapsedtime511; 
 		$totaltime621 = $elapsedtime121 + $elapsedtime221 + $elapsedtime321 + $elapsedtime421 + $elapsedtime521; 
 		
 		$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (36, '$elapsedtime611', '$eventTwitterNum', '$userid')";
-		//$command = $connection->createCommand($sql);
-		//$performanceLogging = $command->queryAll();
+		         VALUES (36, '$totaltime611', '$eventTwitterNum', '$userid')";
+		$command = $connection->createCommand($sql);
+		$performanceLogging = $command->query();
 		
 		$sql = "INSERT INTO performanceaudits (taskid, timeinsec, totalnumberoftweets, fromuserid) 
-		         VALUES (37, '$elapsedtime621', '$eventTwitterNum', '$userid')";
-		//$command = $connection->createCommand($sql);
-		//$performanceLogging = $command->queryAll();
+		         VALUES (37, '$totaltime621', '$eventTwitterNum', '$userid')";
+		$command = $connection->createCommand($sql);
+		$performanceLogging = $command->query();
 		exit;
 		}
 	
