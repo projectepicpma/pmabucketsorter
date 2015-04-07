@@ -116,14 +116,16 @@ class EventController extends Controller
 				$connection=Yii::app()->db;
         		$sql = "CREATE TABLE IF NOT EXISTS ".$tablename." (
 						  `id` int(11) NOT NULL AUTO_INCREMENT,
-						  `tweetid` bigint(21) NOT NULL,
+						  `tweetid` varchar(20) NOT NULL,
 						  `text` varchar(141) NOT NULL,
 						  `fromuser` varchar(141) NOT NULL,
 						  `retweetcount` bigint(20) NOT NULL,
 						  PRIMARY KEY (`id`),
 						  KEY `retweetcount` (`retweetcount`),
-						  KEY `tweetid` (`tweetid`)
-						) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+						  KEY `tweetid` (`tweetid`),
+						  CONSTRAINT `".$tablename."_ibfk_1` FOREIGN KEY (`tweetid`) 
+						  REFERENCES `tweets` (`tweetid`) ON DELETE CASCADE ON UPDATE CASCADE
+						) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
         		//$command = $connection->createCommand($sql);
         		$query = mysqli_query(mysqli_connect("localhost", "root", "DJEZb3xTRyPvM9Y9", "twitterbucketsort"), $sql);
         		
@@ -136,7 +138,6 @@ class EventController extends Controller
 						  `hashtag` varchar(141) NOT NULL,
 						  `count` bigint(20) NOT NULL,
 						  PRIMARY KEY (`id`),
-						  KEY `count` (`count`),
 						  KEY `hashtag` (`hashtag`)						  
 						) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
         		//$command = $connection->createCommand($sql);
@@ -154,7 +155,6 @@ class EventController extends Controller
 						  `count` bigint(20) NOT NULL,
 						  PRIMARY KEY (`id`),
 						  KEY `userid` (`userid`),
-						  KEY `count` (`count`),
 						  CONSTRAINT `".$tablename."` FOREIGN KEY (`userid`) 
 						  REFERENCES `tweets` (`fromuserid`) ON DELETE CASCADE ON UPDATE CASCADE
 						) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";	
