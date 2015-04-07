@@ -66,6 +66,15 @@ class SiteController extends Controller
 		$user=User::model()->find('LOWER(username)=?',array(Yii::app()->user->name));
 		$event= Event::model()->find('id=?', array($user->selectedevent));
 		
+		$sqlcheck = "select count(id) from event where id=:eventcheck";
+		$paramcheck = array(':eventcheck'=>$user->selectedevent);
+		$checkifexist = Event::model()->countBySql($sqlcheck , $paramcheck );	
+
+		if($checkifexist==0)
+		{
+			$this->redirect('splash');
+		}
+		
 		if ($user)
 		{
 			if(isset($_GET['level']))
@@ -165,7 +174,17 @@ class SiteController extends Controller
 		$params=array(':currentevent'=>$user->selectedevent);
 		
 		$numActiveSearchTerms=Tweets::model()->countBySql($sql, $params);
-		
+	
+		// if there are no events, then navigate to splash screen
+		$sqlcheck = "select count(id) from event where id=:eventcheck";
+		$paramcheck = array(':eventcheck'=>$user->selectedevent);
+		$checkifexist = Event::model()->countBySql($sqlcheck , $paramcheck );	
+
+		if($checkifexist==0)
+		{
+			$this->redirect('splash');
+		}
+		else
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('streaming',array('dataProvider'=>$dataProvider,
@@ -184,6 +203,17 @@ class SiteController extends Controller
 	
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+		
+		// if there are no events, navigate back to splash screen
+		$sqlcheck = "select count(id) from event where id=:eventcheck";
+		$paramcheck = array(':eventcheck'=>$user->selectedevent);
+		$checkifexist = Event::model()->countBySql($sqlcheck , $paramcheck );	
+
+		if($checkifexist==0)
+		{
+			$this->redirect('splash');
+		}
+		else
 		$this->render('searchterms',array('model'=>$model));
 	}
 	
@@ -238,6 +268,12 @@ class SiteController extends Controller
 			$user->save();
 		}
 
+		// if there are no events, navigate back to splash screen
+		if(is_null($model) || !isset($model))
+		{
+			$this->redirect('splash');
+		}
+		else
 		$this->render('index',array('model'=>$model));
 	}
 
@@ -253,7 +289,17 @@ class SiteController extends Controller
 		
 		// Select the users based on the currently selected event
 		$model->eventid=User::getUserSelectedEvent();
-		
+
+		// if there are no events, navigate back to splash screen		
+		$sqlcheck = "select count(id) from event where id=:eventcheck";
+		$paramcheck = array(':eventcheck'=>$model->eventid);
+		$checkifexist = Event::model()->countBySql($sqlcheck , $paramcheck );	
+
+		if($checkifexist==0)
+		{
+			$this->redirect('splash');
+		}
+		else
 		$this->render('eventaccess',array('model'=>$model));
 	}
 	
@@ -279,7 +325,7 @@ class SiteController extends Controller
 		$this->layout = 'splash';
 		$model=Event::model()->find('id=?',array(User::getUserSelectedEvent()));
 		$this->render('pages/splash',array('splash'=>true));
-		}
+	}
 		
 	/**
 	 * Displays the login page
