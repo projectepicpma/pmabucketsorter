@@ -17,7 +17,7 @@
 	<br />
 	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('role')); ?>:</b>
-	<?php echo CHtml::encode($data->id); ?>
+	<?php echo CHtml::encode($data->role); ?>
 	<br />
 
 
